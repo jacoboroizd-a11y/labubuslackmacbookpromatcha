@@ -1,0 +1,7 @@
+# Base de datos
+
+Aplicar `supabase/migrations/001_initial.sql` en el SQL Editor de un proyecto Supabase nuevo. `auth.users` es la fuente de identidad y la vista pública `users` solo expone el ID del usuario autenticado; `user_profiles` se crea mediante trigger. RLS limita cada tabla personal a `auth.uid()`. Catálogo, proveedores, relaciones y enlaces son públicos de lectura, sin escrituras desde clientes. Solo migraciones o un backend autorizado pueden curarlos. La clave pública de Supabase se usa con la sesión del usuario, nunca service_role.
+
+`user_media_state` tiene clave única usuario/tipo/TMDB; `watchlist` es independiente del estado. Añadir a watchlist no borra un Watched previo. Like y dislike son mutuamente excluyentes, rating 1–5, Watched lleva fecha. `user_streaming_services` conserva la selección por proveedor. La disponibilidad distingue país ISO-3166-1 y monetización. Los campos y tablas futuros se incluyen, pero no implican features implementadas ni snapshots recolectados.
+
+Las temporadas, episodios y colecciones usan claves por tipo e ID para evitar colisiones entre películas y series. Relaciones registran origen, tipo de evidencia y confianza; los datos no deben presentarse como confirmados sin evidencia. `recommendation_events` está reservado para el motor futuro. Para borrar una cuenta, usar Supabase Auth con un proceso administrativo autorizado: los datos personales hacen cascade.
