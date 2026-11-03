@@ -31,3 +31,7 @@ npm start
 Se usa un lockfile npm. Next instala el shell PWA con manifest e icono; el modo offline muestra una página informativa, no datos personales cacheados. HTTPS es necesario en producción.
 
 Ver [ARCHITECTURE.md](ARCHITECTURE.md), [DATABASE.md](DATABASE.md), [PROVIDERS.md](PROVIDERS.md) y [ROADMAP.md](ROADMAP.md). Fases 2–4 están diseñadas pero pendientes. Antes de publicar validar auth, RLS entre dos usuarios y disponibilidad NI con credenciales reales. No agregar secretos al repositorio.
+
+## Estado de validación
+
+Consulta [VALIDATION.md](VALIDATION.md) para ver las pruebas ejecutadas y las conexiones externas pendientes. El entorno usa Webpack por las restricciones de workers de Turbopack. En cloud, inicia con `NODE_USE_ENV_PROXY=1 npm run dev` para usar el proxy HTTPS heredado con Node 24.
