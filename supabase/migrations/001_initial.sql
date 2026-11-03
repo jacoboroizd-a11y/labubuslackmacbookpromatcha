@@ -10,7 +10,7 @@ begin insert into public.user_profiles(id,display_name) values(new.id,coalesce(n
 create trigger on_auth_user_created after insert on auth.users for each row execute procedure public.handle_new_user();
 insert into public.user_profiles(id) select id from auth.users on conflict do nothing;
 create table public.streaming_providers(id integer primary key, name text not null);
-insert into public.streaming_providers values (8,'Netflix'),(337,'Disney+'),(1899,'Max'),(9,'Amazon Prime Video'),(350,'Apple TV+'),(531,'Paramount+'),(283,'Crunchyroll'),(11,'MUBI'),(15,'Hulu'),(386,'Peacock'),(1920,'ViX'),(192,'YouTube');
+insert into public.streaming_providers values (8,'Netflix'),(337,'Disney+'),(1899,'Max'),(9,'Amazon Prime Video'),(350,'Apple TV+'),(531,'Paramount+'),(283,'Crunchyroll'),(11,'MUBI'),(15,'Hulu'),(386,'Peacock'),(457,'ViX'),(192,'YouTube');
 create table public.user_streaming_services (
  user_id uuid not null references auth.users on delete cascade, provider_id integer not null references public.streaming_providers,
  active boolean not null default true, created_at timestamptz not null default now(), primary key(user_id,provider_id)
